@@ -10,9 +10,9 @@
 ```
 1. **СОЗДАТЬ БАЗУ ДАННЫХ**
 ```
-create database testdb (название бд);
+CREATE database testdb (название бд);
 ```
-2. **Подключиться к базе данных**
+2. **ПОДКЛЮЧИТЬСЯ К БАЗЕ ДАННЫХ**
 ```
 psql -h <hostname or ip address> -p <port number of remote machine> -d <database name which you want to connect> -U <username of the database server>
 ```
@@ -30,7 +30,7 @@ psql -U postgres
 ```
 3. **СОЗДАТЬ ПОЛЬЗОВАТЕЛЯ (CRUD)**
 ```
-create user usercrud (имя пользователя) with encrypted password 'пароль';`
+CREATE user usercrud (имя пользователя) with encrypted password 'пароль';`
 ```
 1) *Дать пользователю CRUD-права на базу данных testdb*
 ```
@@ -38,7 +38,7 @@ GRANT ALL PRIVILEGES ON DATABASE testdb (имя базы дданых) TO usercr
 ```
 4. **СОЗДАТЬ ПОЛЬЗОВАТЕЛЯ С ОГРАНИЧЕННЫМИ ПРАВАМИ**
 
-*1) Создать роль (READ)*
+1) *Создать роль (READ)*
 ```
 CREATE ROLE readonly;
 ```
@@ -100,29 +100,31 @@ REFERENCES (ссылается на) product (имя первой таблицы
 ```
 INSERT INTO product ('имя таблицы') (maker, model, type)('строки в таблице') VALUES ('данные', 'данные', 'данные');
 ```
-так заполнится одна строка 
+(так заполнится одна строка) 
 
-4) **Дать права пользователю crud для модификации таблиц и выборки данных**
+6. **ДАТЬ ПРАВА ПОЛЬЗОВАТЕЛЮ CRUD**
+
+1) **Дать права пользователю crud для модификации таблиц и выборки данных**
 ```
-testdb=# GRANT SELECT, UPDATE, INSERT, DELETE ON product TO usercrud;
-testdb=# GRANT SELECT, UPDATE, INSERT, DELETE ON pc TO usercrud;
-testdb=# GRANT SELECT, UPDATE, INSERT, DELETE ON laptop TO usercrud;
-testdb=# GRANT SELECT, UPDATE, INSERT, DELETE ON tablet TO usercrud;
-testdb=# GRANT SELECT, UPDATE, INSERT, DELETE ON mobile TO usercrud;
+GRANT SELECT, UPDATE, INSERT, DELETE ON product TO usercrud;
+GRANT SELECT, UPDATE, INSERT, DELETE ON pc TO usercrud;
+GRANT SELECT, UPDATE, INSERT, DELETE ON laptop TO usercrud;
+GRANT SELECT, UPDATE, INSERT, DELETE ON tablet TO usercrud;
+GRANT SELECT, UPDATE, INSERT, DELETE ON mobile TO usercrud;
 ```
-5) **Дать права пользователю read для выборки данных**
+2) **Дать права пользователю read для выборки данных**
 ```
-testdb=# GRANT SELECT ON product TO userread;
-testdb=# GRANT SELECT ON pc TO userread;
-testdb=# GRANT SELECT ON laptop TO userread;
-testdb=# GRANT SELECT ON tablet TO userread;
-testdb=# GRANT SELECT ON mobile TO userread;`
+GRANT SELECT ON product TO userread;
+GRANT SELECT ON pc TO userread;
+GRANT SELECT ON laptop TO userread;
+GRANT SELECT ON tablet TO userread;
+GRANT SELECT ON mobile TO userread;`
 ```
-6) **Дать права пользователю crud для счетчика таблиц**
+3) **Дать права пользователю crud для счетчика таблиц**
 ```
-testdb=# GRANT USAGE, SELECT ON SEQUENCE product_id_seq TO usercrud;
-testdb=# GRANT USAGE, SELECT ON SEQUENCE pc_id_pc_seq TO usercrud;
-testdb=# GRANT USAGE, SELECT ON SEQUENCE laptop_id_laptop_seq TO usercrud;
-testdb=# GRANT USAGE, SELECT ON SEQUENCE tablet_id_tablet_seq TO usercrud;
-testdb=# GRANT USAGE, SELECT ON SEQUENCE mobile_id_mobile_seq TO usercrud;
+GRANT USAGE, SELECT ON SEQUENCE product_id_seq TO usercrud;
+GRANT USAGE, SELECT ON SEQUENCE pc_id_pc_seq TO usercrud;
+GRANT USAGE, SELECT ON SEQUENCE laptop_id_laptop_seq TO usercrud;
+GRANT USAGE, SELECT ON SEQUENCE tablet_id_tablet_seq TO usercrud;
+GRANT USAGE, SELECT ON SEQUENCE mobile_id_mobile_seq TO usercrud;
 ```
