@@ -5,7 +5,7 @@
 
 **Смена кодировки**
 ```
-  chcp 1251 
+  chcp 1251 или
   psql \! chcp 1251
 ```
 
@@ -49,10 +49,10 @@
 
 
 *Дать права к существующим таблицам*
-
-`GRANT USAGE ON SCHEMA public TO readonly;
-GRANT SELECT ON ALL TABLES IN SCHEMA public TO readonly;`
-
+```
+GRANT USAGE ON SCHEMA public TO readonly;
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO readonly;
+```
 
 *дать права к новым таблицам*
 
@@ -60,10 +60,10 @@ GRANT SELECT ON ALL TABLES IN SCHEMA public TO readonly;`
 
 
 *Создать пользователя и дать ему роль*
-
-`CREATE USER имя пользователя WITH PASSWORD 'пароль';
-GRANT readonly TO имя пользователя;`
-
+```
+CREATE USER имя пользователя WITH PASSWORD 'пароль';
+GRANT readonly TO имя пользователя;
+```
 
 *Разрешить пользователю подключаться к бд*
 
@@ -82,15 +82,15 @@ GRANT readonly TO имя пользователя;`
 
 
 **Создать таблицу под testdb (имя таблицы, в которой созданы пользователи с правами)**
-
-`CREATE TABLE (имя таблицы) (
-> id BIGSERIAL NOT NULL PRIMARY KEY,
-> maker VARCHAR(50) NOT NULL,
-> model VARCHAR(50) NOT NULL,
-> type VARCHAR(50) NOT NULL,
-> price NUMBERIC(5, 5)
-> );`
-
+```
+CREATE TABLE (имя таблицы) (
+id BIGSERIAL NOT NULL PRIMARY KEY,
+maker VARCHAR(50) NOT NULL,
+model VARCHAR(50) NOT NULL,
+type VARCHAR(50) NOT NULL,
+price NUMBERIC(5, 5)
+);
+```
 
 **\d** - проверить таблицу и последовательность (id)
 
@@ -108,10 +108,10 @@ GRANT readonly TO имя пользователя;`
 
 
 **Обозначить внешний ключ в таблице (кроме главной) - остальные таблицы имеют отношение к главной**
-
-`ALTER TABLE pc (имя второй таблицы) ADD product_id (имя внешнего ключа) BIGINT (тип) 
-REFERENCES (ссылается на) product (имя первой таблицы) (id) (поле таблицы, к которму ссылается);`
-
+```
+ALTER TABLE pc (имя второй таблицы) ADD product_id (имя внешнего ключа) BIGINT (тип) 
+REFERENCES (ссылается на) product (имя первой таблицы) (id) (поле таблицы, к которму ссылается);
+```
 
 **Заполнить таблицу данными**
 
@@ -120,39 +120,28 @@ REFERENCES (ссылается на) product (имя первой таблицы
 
 
 **Дать права пользователю crud для модификации таблиц и выборки данных**
-
-`testdb=# GRANT SELECT, UPDATE, INSERT, DELETE ON product TO usercrud;
-
+```
+testdb=# GRANT SELECT, UPDATE, INSERT, DELETE ON product TO usercrud;
 testdb=# GRANT SELECT, UPDATE, INSERT, DELETE ON pc TO usercrud;
-
 testdb=# GRANT SELECT, UPDATE, INSERT, DELETE ON laptop TO usercrud;
-
 testdb=# GRANT SELECT, UPDATE, INSERT, DELETE ON tablet TO usercrud;
-
-testdb=# GRANT SELECT, UPDATE, INSERT, DELETE ON mobile TO usercrud;`
-
+testdb=# GRANT SELECT, UPDATE, INSERT, DELETE ON mobile TO usercrud;
+```
 
 **Дать права пользователю read для выборки данных**
-
-`testdb=# GRANT SELECT ON product TO userread;
-GRANT
+```
+testdb=# GRANT SELECT ON product TO userread;
 testdb=# GRANT SELECT ON pc TO userread;
-GRANT
 testdb=# GRANT SELECT ON laptop TO userread;
-GRANT
 testdb=# GRANT SELECT ON tablet TO userread;
-GRANT
 testdb=# GRANT SELECT ON mobile TO userread;`
-
+```
 
 **Дать права пользователю crud для счетчика таблиц**
-
+```
 testdb=# GRANT USAGE, SELECT ON SEQUENCE product_id_seq TO usercrud;
-GRANT
 testdb=# GRANT USAGE, SELECT ON SEQUENCE pc_id_pc_seq TO usercrud;
-GRANT
 testdb=# GRANT USAGE, SELECT ON SEQUENCE laptop_id_laptop_seq TO usercrud;
-GRANT
 testdb=# GRANT USAGE, SELECT ON SEQUENCE tablet_id_tablet_seq TO usercrud;
-GRANT
 testdb=# GRANT USAGE, SELECT ON SEQUENCE mobile_id_mobile_seq TO usercrud;
+```
