@@ -84,12 +84,12 @@ GRANT readonly TO имя пользователя;`
 **Создать таблицу под testdb (имя таблицы, в которой созданы пользователи с правами)**
 
 `CREATE TABLE (имя таблицы) (
-id BIGSERIAL NOT NULL PRIMARY KEY,
-maker VARCHAR(50) NOT NULL,
-model VARCHAR(50) NOT NULL,
-type VARCHAR(50) NOT NULL,
-price NUMBERIC(5, 5)
-);`
+> id BIGSERIAL NOT NULL PRIMARY KEY,
+> maker VARCHAR(50) NOT NULL,
+> model VARCHAR(50) NOT NULL,
+> type VARCHAR(50) NOT NULL,
+> price NUMBERIC(5, 5)
+> );`
 
 
 **\d** - проверить таблицу и последовательность (id)
