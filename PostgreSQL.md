@@ -38,7 +38,7 @@ GRANT ALL PRIVILEGES ON DATABASE testdb (имя базы дданых) TO usercr
 ```
 4. **СОЗДАТЬ ПОЛЬЗОВАТЕЛЯ С ОГРАНИЧЕННЫМИ ПРАВАМИ**
 
-1) *Создать роль (READ)*
+*1) Создать роль (READ)*
 ```
 CREATE ROLE readonly;
 ```
