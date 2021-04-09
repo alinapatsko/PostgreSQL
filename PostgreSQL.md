@@ -35,32 +35,32 @@ psql -U postgres
 ```
 CREATE user usercrud (имя пользователя) with encrypted password 'пароль';`
 ```
-1) *Дать пользователю CRUD-права на базу данных testdb*
+*1) Дать пользователю CRUD-права на базу данных testdb*
 ```
 GRANT ALL PRIVILEGES ON DATABASE testdb (имя базы дданых) TO usercrud (имя пользователя);`
 ```
 
 4. **СОЗДАТЬ ПОЛЬЗОВАТЕЛЯ С ОГРАНИЧЕННЫМИ ПРАВАМИ**
 
-1) *Создать роль (READ)*
+*1) Создать роль (READ)*
 ```
 CREATE ROLE readonly;
 ```
-2) *Дать права к существующим таблицам*
+*2) Дать права к существующим таблицам*
 ```
 GRANT USAGE ON SCHEMA public TO readonly;
 GRANT SELECT ON ALL TABLES IN SCHEMA public TO readonly;
 ```
-3) *Дать права к новым таблицам*
+*3) Дать права к новым таблицам*
 ```
 ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO readonly;
 ```
-4) *Создать пользователя и дать ему роль*
+*4) Создать пользователя и дать ему роль*
 ```
 CREATE USER имя пользователя WITH PASSWORD 'пароль';
 GRANT readonly TO имя пользователя;
 ```
-5) *Разрешить пользователю подключаться к баде данных*
+*5) Разрешить пользователю подключаться к баде данных*
 ```
 GRANT CONNECT ON DATABASE testdb TO userread;
 ```
@@ -74,7 +74,7 @@ GRANT CONNECT ON DATABASE testdb TO userread;
 *BIGSERIAL* - id primay key нарастался автоматически
 каждой таблице установить primay key!!!
 
-1) **Создать таблицу под testdb (имя таблицы, в которой созданы пользователи с правами)**
+**1) Создать таблицу под testdb (имя таблицы, в которой созданы пользователи с правами)**
 ```
 CREATE TABLE (имя таблицы) (
 id BIGSERIAL NOT NULL PRIMARY KEY,
@@ -96,12 +96,12 @@ ALTER TABLE pc (имя таблицы) DROP COLUMN screen (имя столбца
 ```
 ALTER TABLE pc ALTER COLUMN price TYPE numeric(12,2);
 ```
-2) **Обозначить внешний ключ в таблице (кроме главной) - остальные таблицы имеют отношение к главной**
+**2) Обозначить внешний ключ в таблице (кроме главной) - остальные таблицы имеют отношение к главной**
 ```
 ALTER TABLE pc (имя второй таблицы) ADD product_id (имя внешнего ключа) BIGINT (тип) 
 REFERENCES (ссылается на) product (имя первой таблицы) (id) (поле таблицы, к которму ссылается);
 ```
-3) **Заполнить таблицу данными**
+**3) Заполнить таблицу данными**
 ```
 INSERT INTO product ('имя таблицы') (maker, model, type)('строки в таблице') VALUES ('данные', 'данные', 'данные');
 ```
@@ -110,7 +110,7 @@ INSERT INTO product ('имя таблицы') (maker, model, type)('строки
 
 6. **ДАТЬ ПРАВА ПОЛЬЗОВАТЕЛЮ CRUD**
 
-1) **Дать права пользователю crud для модификации таблиц и выборки данных**
+**1) Дать права пользователю crud для модификации таблиц и выборки данных**
 ```
 GRANT SELECT, UPDATE, INSERT, DELETE ON product TO usercrud;
 GRANT SELECT, UPDATE, INSERT, DELETE ON pc TO usercrud;
@@ -118,7 +118,7 @@ GRANT SELECT, UPDATE, INSERT, DELETE ON laptop TO usercrud;
 GRANT SELECT, UPDATE, INSERT, DELETE ON tablet TO usercrud;
 GRANT SELECT, UPDATE, INSERT, DELETE ON mobile TO usercrud;
 ```
-2) **Дать права пользователю read для выборки данных**
+**2) Дать права пользователю read для выборки данных**
 ```
 GRANT SELECT ON product TO userread;
 GRANT SELECT ON pc TO userread;
@@ -126,7 +126,7 @@ GRANT SELECT ON laptop TO userread;
 GRANT SELECT ON tablet TO userread;
 GRANT SELECT ON mobile TO userread;`
 ```
-3) **Дать права пользователю crud для счетчика таблиц**
+**3) Дать права пользователю crud для счетчика таблиц**
 ```
 GRANT USAGE, SELECT ON SEQUENCE product_id_seq TO usercrud;
 GRANT USAGE, SELECT ON SEQUENCE pc_id_pc_seq TO usercrud;
