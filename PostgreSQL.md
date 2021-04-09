@@ -9,12 +9,12 @@
   psql \! chcp 1251
 ```
 
-1. **СОЗДАТЬ БАЗУ ДАННЫХ**
+**1. СОЗДАТЬ БАЗУ ДАННЫХ**
 ```
 CREATE database testdb (название бд);
 ```
 
-2. **ПОДКЛЮЧИТЬСЯ К БАЗЕ ДАННЫХ**
+**2. ПОДКЛЮЧИТЬСЯ К БАЗЕ ДАННЫХ**
 ```
 psql -h <hostname or ip address> -p <port number of remote machine> -d <database name which you want to connect> -U <username of the database server>
 ```
@@ -31,7 +31,7 @@ psql -U postgres
 \c testdb
 ```
 
-3. **СОЗДАТЬ ПОЛЬЗОВАТЕЛЯ (CRUD)**
+**3. СОЗДАТЬ ПОЛЬЗОВАТЕЛЯ (CRUD)**
 ```
 CREATE user usercrud (имя пользователя) with encrypted password 'пароль';`
 ```
@@ -40,7 +40,7 @@ CREATE user usercrud (имя пользователя) with encrypted password '
 GRANT ALL PRIVILEGES ON DATABASE testdb (имя базы дданых) TO usercrud (имя пользователя);`
 ```
 
-4. **СОЗДАТЬ ПОЛЬЗОВАТЕЛЯ С ОГРАНИЧЕННЫМИ ПРАВАМИ**
+**4. СОЗДАТЬ ПОЛЬЗОВАТЕЛЯ С ОГРАНИЧЕННЫМИ ПРАВАМИ**
 
 1) **Создать роль (READ)**
 ```
@@ -69,7 +69,7 @@ GRANT CONNECT ON DATABASE testdb TO userread;
 \conninfo
 ```
 
-5. **СОЗДАНИЕ ТАБЛИЦ**
+**5. СОЗДАНИЕ ТАБЛИЦ**
 
 *BIGSERIAL* - id primay key нарастался автоматически
 каждой таблице установить primay key!!!
@@ -108,7 +108,7 @@ INSERT INTO product ('имя таблицы') (maker, model, type)('строки
 (так заполнится одна строка) 
 
 
-6. **ДАТЬ ПРАВА ПОЛЬЗОВАТЕЛЮ CRUD**
+**6. ДАТЬ ПРАВА ПОЛЬЗОВАТЕЛЮ CRUD**
 
 1) **Дать права пользователю crud для модификации таблиц и выборки данных**
 ```
